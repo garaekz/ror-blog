@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Clean Blog - Start Bootstrap Theme</title>
+    <title>Garaekz RoR Blog | Work in progress project</title>
 
     <!-- Bootstrap core CSS -->
     <%= stylesheet_link_tag    'bootstrap.min' %>
@@ -20,7 +20,9 @@
 
     <!-- Custom styles for this template -->
     <%= stylesheet_link_tag    'clean-blog.min' %>
-
+    <%= stylesheet_link_tag    'cust' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
   </head>
 
   <body>
@@ -41,14 +43,29 @@
             <li class="nav-item">
               <%= link_to 'About', about_path %>
             </li>
-            </li>
+            <% if logged_in? %>
+              <li class="nav-item dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
+                <div class="dropdown-menu">
+                 <%= link_to 'New article', new_article_path, {:class=>"dropdown-item"} %>
+                 <%= link_to 'My page', user_path(current_user), {:class=>"dropdown-item"} %>
+                </div>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Logout', logout_path, method: :delete %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to 'Login', login_path %>
+              </li>
+            <% end %>
           </ul>
         </div>
       </div>
     </nav>
 
    <%= yield %>
-
+    <hr>
     <!-- Footer -->
     <footer>
       <div class="container">
@@ -85,14 +102,5 @@
         </div>
       </div>
     </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <!--<script src="vendor/jquery/jquery.min.js"></script>-->
-    <!--<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>-->
-
-    <!-- Custom scripts for this template -->
-    <!--<script src="js/clean-blog.min.js"></script>-->
-
   </body>
-
 </html>

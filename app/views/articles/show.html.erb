@@ -5,8 +5,8 @@
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
         <div class="site-heading">
-          <h1>Alpha-Blog</h1>
-          <span class="subheading">A bilingual blog/Un blog bilingüe</span>
+          <h1><%= @article.title %></h1>
+          <span class="subheading">Posted by <%= link_to @article.user.username, user_path(@article.user) %></span>
         </div>
       </div>
     </div>
@@ -17,12 +17,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-8 col-md-10 mx-auto">
-      <%= render 'articles/article', obj: @articles %>
-        
-      <!-- Pager -->
-      <div class="clearfix">
-         <%= will_paginate @articles %>
-      </div>
+      <p><%= @article.description %></p>
     </div>
   </div>
 </div>

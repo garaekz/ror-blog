@@ -1,12 +1,12 @@
 <!-- Page Header -->
-<header class="masthead" style="background-image: url('/img/home-bg.jpg')">
+<header class="masthead" style="background-image: url('/img/about-bg.jpg')">
   <div class="overlay"></div>
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <div class="site-heading">
-          <h1>Alpha-Blog</h1>
-          <span class="subheading">A bilingual blog/Un blog bilingüe</span>
+        <div class="page-heading">
+          <h1>Welcome to <%= @user.username %>'s page</h1>
+          <span class="subheading">These are my articles.</span>
         </div>
       </div>
     </div>
@@ -17,11 +17,11 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-8 col-md-10 mx-auto">
-      <%= render 'articles/article', obj: @articles %>
+      <%= render 'articles/article', obj: @user_articles.order('id DESC') %>
         
       <!-- Pager -->
       <div class="clearfix">
-         <%= will_paginate @articles %>
+         <%= will_paginate @user_articles %>
       </div>
     </div>
   </div>
